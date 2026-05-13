@@ -1,200 +1,288 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, MouseEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data";
-import { Download, Mail, Globe, Code2, Database, Wrench } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa"; 
+import { 
+  Download, Mail, Globe, 
+  ChevronLeft, ChevronRight, ExternalLink 
+} from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Portfolio() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const data = portfolioData[lang];
+  const [currentProject, setCurrentProject] = useState(0);
+
+  const nextProject = () => setCurrentProject((prev) => (prev + 1) % data.projects.items.length);
+  const prevProject = () => setCurrentProject((prev) => (prev - 1 + data.projects.items.length) % data.projects.items.length);
+
+  const handleSmoothScroll = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80, 
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-violet-500/30">
+    <div className="relative min-h-screen bg-[#0A0A0B] text-slate-200 font-sans selection:bg-violet-500/30 overflow-x-hidden">
       
-      {/* Navegación y Toggle de Idioma */}
-      <nav className="fixed w-full backdrop-blur-md bg-slate-950/80 z-50 border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">
-            MA.
-          </span>
-          <button 
-            onClick={() => setLang(lang === "es" ? "en" : "es")}
-            className="flex items-center gap-2 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full transition-all border border-white/10"
-          >
-            <Globe size={18} className="text-violet-400" />
-            <span className="font-semibold uppercase text-sm tracking-wider">{lang}</span>
-          </button>
-        </div>
-      </nav>
+      <div className="fixed inset-0 z-[0] pointer-events-none opacity-50">
+        <motion.div
+          animate={{
+            transform: ["translate(0%, 0%) scale(1)", "translate(5%, 5%) scale(1.1)", "translate(0%, 0%) scale(1)"],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-violet-900/20 blur-[150px]"
+        />
+        <motion.div
+          animate={{
+            transform: ["translate(0%, 0%) scale(1)", "translate(-5%, -5%) scale(1.2)", "translate(0%, 0%) scale(1)"],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[40%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-blue-900/10 blur-[150px]"
+        />
+      </div>
 
-      <main className="max-w-6xl mx-auto px-6 pt-32 pb-20 space-y-32">
-        
-        {/* HERO SECTION */}
-        <section className="min-h-[70vh] flex flex-col justify-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-violet-400 font-mono mb-4 text-lg">{data.hero.greeting}</h2>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight text-white">
-              {data.hero.name}
-            </h1>
-            <h3 className="text-3xl md:text-5xl font-bold text-slate-400 mb-6">
-              {data.hero.role}
-            </h3>
-            <p className="max-w-2xl text-lg text-slate-400 leading-relaxed mb-10">
-              {data.hero.description}
-            </p>
+      <div className="relative z-10">
+        {/* NAVBAR */}
+        <nav className="fixed w-full backdrop-blur-md bg-[#0A0A0B]/80 border-b border-white/5 z-50">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <motion.span whileHover={{ scale: 1.1 }} className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent cursor-pointer">
+              MA.
+            </motion.span>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+              {['about', 'experience', 'projects', 'education', 'contact'].map((section) => (
+                <a 
+                  key={section}
+                  href={`#${section}`} 
+                  onClick={(e) => handleSmoothScroll(e, section)}
+                  className="hover:text-white transition-colors"
+                >
+                  {data.nav[section as keyof typeof data.nav]}
+                </a>
+              ))}
+            </div>
+
+            <button 
+              onClick={() => setLang(lang === "es" ? "en" : "es")}
+              className="flex items-center gap-2 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full transition-all border border-white/10"
+            >
+              <Globe size={18} className="text-violet-400" />
+              <span className="font-semibold uppercase text-xs tracking-widest">{lang}</span>
+            </button>
+          </div>
+        </nav>
+
+        <main className="max-w-6xl mx-auto px-6 pt-20 pb-10">
+          
+          {/* HERO SECTION */}
+          <section id="about" className="min-h-screen flex flex-col justify-center">
+            <div className="grid md:grid-cols-12 gap-12 items-center">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="md:col-span-8"
+              >
+                <h2 className="text-violet-400 font-mono mb-4 text-lg">{data.hero.greeting}</h2>
+                <h1 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter text-white">
+                  {data.hero.name.split(" ")[0]} <br/> 
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-blue-500">
+                    {data.hero.name.split(" ")[1]}
+                  </span>
+                </h1>
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-400 mb-8 italic">
+                  {data.hero.role}
+                </h3>
+                <p className="max-w-2xl text-lg text-slate-400 leading-relaxed mb-10">
+                  {data.hero.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-6">
+                  <motion.a 
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)" }}
+                    whileTap={{ scale: 0.95 }}
+                    href="/Milagros-Alvarez-CV.pdf" 
+                    className="bg-violet-600 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2"
+                  >
+                    <Download size={20} /> {data.hero.downloadCV}
+                  </motion.a>
+                  <div className="flex gap-4">
+                    <a href="https://github.com/Milialvarez" className="p-4 bg-white/5 border border-white/5 rounded-full hover:text-violet-400 transition-colors"><FaGithub size={24}/></a>
+                    <a href="https://www.linkedin.com/in/milagrosalvarez-dev" className="p-4 bg-white/5 border border-white/5 rounded-full hover:text-violet-400 transition-colors"><FaLinkedin size={24}/></a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="md:col-span-4 grid grid-cols-1 gap-4"
+              >
+                {[
+                  { label: data.hero.stats.exp, color: "from-violet-500" },
+                  { label: data.hero.stats.projects, color: "from-blue-500" },
+                  { label: data.hero.stats.github, color: "from-teal-500" }
+                ].map((stat, i) => (
+                  <motion.div 
+                    key={i}
+                    whileHover={{ x: 10 }}
+                    className={`p-6 rounded-2xl bg-gradient-to-r ${stat.color} to-transparent border border-white/10 backdrop-blur-xl`}
+                  >
+                    <span className="text-2xl font-black text-white">{stat.label}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* EXPERIENCIA */}
+          <section id="experience" className="py-24">
+            <h3 className="text-4xl font-bold mb-16 text-white">{data.experience.title}</h3>
+            <div className="space-y-12">
+              {data.experience.items.map((exp, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-[#121214] border border-white/5 p-8 rounded-3xl"
+                >
+                  <div className="flex flex-wrap justify-between items-start mb-6">
+                    <div>
+                      <h4 className="text-2xl font-bold text-violet-400">{exp.role}</h4>
+                      <p className="text-xl text-white opacity-80">{exp.company}</p>
+                    </div>
+                    <span className="bg-violet-500/10 border border-violet-500/20 text-violet-300 px-4 py-1 rounded-full text-sm font-mono">{exp.date}</span>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {exp.responsibilities.map((res, j) => (
+                      <li key={j} className="flex gap-3 text-slate-400">
+                        <span className="text-violet-500">▹</span> {res}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pt-6 border-t border-white/5">
+                    <p className="text-sm font-mono text-slate-500 uppercase tracking-widest">Soft Skills</p>
+                    <p className="text-slate-300 italic">{exp.softSkills}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* PROYECTOS */}
+          <section id="projects" className="py-24">
+            <div className="flex justify-between items-end mb-12">
+              <h3 className="text-4xl font-bold text-white">{data.projects.title}</h3>
+              <div className="flex gap-4">
+                <button onClick={prevProject} className="p-3 bg-white/5 rounded-full hover:bg-violet-500 transition-all"><ChevronLeft/></button>
+                <button onClick={nextProject} className="p-3 bg-white/5 rounded-full hover:bg-violet-500 transition-all"><ChevronRight/></button>
+              </div>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-3xl bg-[#121214] border border-white/5 p-8 md:p-12">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={currentProject}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4 }}
+                  className="grid md:grid-cols-2 gap-12 items-center"
+                >
+                  <div className="aspect-video bg-slate-900 rounded-2xl flex items-center justify-center border border-white/5">
+                    <span className="text-slate-600 font-bold uppercase tracking-[10px]">Preview</span>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold text-white mb-4">{data.projects.items[currentProject].title}</h4>
+                    <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                      {data.projects.items[currentProject].description}
+                    </p>
+                    <div className="flex gap-4">
+                      <a href={data.projects.items[currentProject].link} target="_blank" className="flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 px-6 py-3 rounded-xl transition-all">
+                        <FaGithub/> {data.projects.viewCode}
+                      </a>
+                      {data.projects.items[currentProject].demo !== "#" && (
+                        <a href={data.projects.items[currentProject].demo} target="_blank" className="flex items-center gap-2 bg-white text-black hover:bg-gray-200 px-6 py-3 rounded-xl transition-all font-bold">
+                          <ExternalLink size={18}/> {data.projects.liveDemo}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </section>
+
+          {/* EDUCACIÓN & CERTIFICACIONES */}
+          <section id="education" className="py-24 grid lg:grid-cols-2 gap-16">
+            <div>
+              <h3 className="text-3xl font-bold mb-12 text-white">{data.education.title}</h3>
+              <div className="space-y-10">
+                {data.education.items.map((edu, i) => (
+                  <div key={i} className="relative pl-6 border-l-2 border-violet-500/30">
+                    <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-violet-500" />
+                    <p className="text-violet-400 font-mono text-sm mb-1">{edu.date}</p>
+                    <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
+                    <p className="text-slate-300 font-medium mb-3">{edu.institution}</p>
+                    <p className="text-slate-400 text-sm leading-relaxed">{edu.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold mb-12 text-white">{data.education.certifications.title}</h3>
+              <div className="grid grid-cols-1 gap-6">
+                {data.education.certifications.list.map((cert, i) => (
+                  <motion.div 
+                    key={i} 
+                    whileHover={{ x: 5 }}
+                    className="flex items-start gap-4 bg-[#121214] p-6 rounded-2xl border border-white/5"
+                  >
+                    <div>
+                      <span className="font-bold text-lg text-white block mb-1">{cert.name}</span>
+                      <p className="text-slate-400 text-sm leading-relaxed">{cert.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CONTACTO */}
+          <section id="contact" className="py-24">
+            <div className="max-w-4xl mx-auto relative rounded-[2rem] bg-[#111113] border border-white/5 p-12 md:p-20 text-center overflow-hidden shadow-2xl">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500" />
+              
+              <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                {data.contact.title}
+              </h3>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                {data.contact.subtitle}
+              </p>
               <motion.a 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/Milagros-Alvarez-CV.pdf" 
-                download
-                className="flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white px-8 py-4 rounded-lg font-semibold shadow-lg shadow-violet-500/25 transition-colors"
+                href={`mailto:${data.contact.email}`}
+                className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors"
               >
-                <Download size={20} />
-                {data.hero.downloadCV}
+                <Mail size={20} /> {data.contact.button}
               </motion.a>
-              
-              <div className="flex gap-4 items-center ml-4">
-                <a href="https://github.com/Milialvarez" target="_blank" rel="noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-violet-400 transition-colors">
-                  <FaGithub size={24} />
-                </a>
-                <a href="https://www.linkedin.com/in/milagrosalvarez-dev" target="_blank" rel="noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-violet-400 transition-colors">
-                  <FaLinkedin size={24} />
-                </a>
-              </div>
             </div>
-          </motion.div>
-        </section>
+          </section>
 
-        {/* EXPERIENCIA & EDUCACIÓN */}
-        <section className="grid md:grid-cols-2 gap-16">
-          <div>
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-white">
-              <span className="text-violet-500">01.</span> Experiencia
-            </h3>
-            <div className="space-y-8 border-l border-violet-500/30 pl-6">
-              {data.experience.map((exp, i) => (
-                <div key={i} className="relative">
-                  <div className="absolute -left-[31px] top-1 h-4 w-4 rounded-full bg-violet-500 border-4 border-slate-950" />
-                  <h4 className="text-xl font-bold text-white">{exp.role}</h4>
-                  <p className="text-violet-400 font-mono text-sm mb-2">{exp.company} • {exp.date}</p>
-                  <p className="text-slate-400">{exp.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-white">
-              <span className="text-blue-500">02.</span> Educación
-            </h3>
-            <div className="space-y-8 border-l border-blue-500/30 pl-6">
-              {data.education.map((edu, i) => (
-                <div key={i} className="relative">
-                  <div className="absolute -left-[31px] top-1 h-4 w-4 rounded-full bg-blue-500 border-4 border-slate-950" />
-                  <h4 className="text-xl font-bold text-white">{edu.degree}</h4>
-                  <p className="text-blue-400 font-mono text-sm mb-2">{edu.institution}</p>
-                  <p className="text-slate-400">{edu.date}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        </main>
 
-        {/* TECNOLOGÍAS */}
-        <section>
-          <h3 className="text-3xl font-bold mb-10 flex items-center gap-3 text-white justify-center">
-            <span className="text-violet-500">03.</span> Stack Tecnológico
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div whileHover={{ y: -5 }} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-violet-500/50 transition-colors">
-              <Code2 className="text-violet-400 mb-4" size={32} />
-              <h4 className="text-xl font-bold mb-4 text-white">Frontend</h4>
-              <div className="flex flex-wrap gap-2">
-                {data.tech.frontend.map(t => <span key={t} className="bg-violet-500/10 text-violet-300 px-3 py-1 rounded-full text-sm">{t}</span>)}
-              </div>
-            </motion.div>
-            
-            <motion.div whileHover={{ y: -5 }} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-blue-500/50 transition-colors">
-              <Database className="text-blue-400 mb-4" size={32} />
-              <h4 className="text-xl font-bold mb-4 text-white">Backend & DB</h4>
-              <div className="flex flex-wrap gap-2">
-                {data.tech.backend.concat(data.tech.db).map(t => <span key={t} className="bg-blue-500/10 text-blue-300 px-3 py-1 rounded-full text-sm">{t}</span>)}
-              </div>
-            </motion.div>
-
-            <motion.div whileHover={{ y: -5 }} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-teal-500/50 transition-colors">
-              <Wrench className="text-teal-400 mb-4" size={32} />
-              <h4 className="text-xl font-bold mb-4 text-white">Herramientas</h4>
-              <div className="flex flex-wrap gap-2">
-                {data.tech.tools.map(t => <span key={t} className="bg-teal-500/10 text-teal-300 px-3 py-1 rounded-full text-sm">{t}</span>)}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* PROYECTOS (Carrusel simplificado css) */}
-        <section>
-          <h3 className="text-3xl font-bold mb-10 flex items-center gap-3 text-white">
-            <span className="text-violet-500">04.</span> Proyectos Destacados
-          </h3>
-          <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory hide-scrollbar">
-            {data.projects.map((proj, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ scale: 1.02 }}
-                className="min-w-[300px] md:min-w-[400px] bg-white/5 border border-white/10 rounded-xl p-6 snap-center flex flex-col justify-between hover:bg-white/10 transition-all"
-              >
-                <div>
-                  <div className="h-40 bg-slate-900 rounded-lg mb-4 flex items-center justify-center text-slate-500 border border-white/5">
-                    {/* Aquí iría la etiqueta <img> cuando tengas las imágenes */}
-                    [Imagen del Proyecto]
-                  </div>
-                  <h4 className="text-2xl font-bold text-white mb-2">{proj.title}</h4>
-                  <p className="text-slate-400 mb-4">{proj.description}</p>
-                </div>
-                <a href={proj.link} target="_blank" rel="noreferrer" className="text-violet-400 hover:text-violet-300 flex items-center gap-2 font-mono text-sm mt-4">
-                  Ver código <FaGithub size={16} />
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* CERTIFICACIONES */}
-        <section className="text-center">
-          <h3 className="text-3xl font-bold mb-10 flex items-center gap-3 text-white justify-center">
-            <span className="text-blue-500">05.</span> Certificaciones
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {data.certs.map((cert, i) => (
-              <motion.div 
-                key={i} 
-                whileHover={{ y: -3 }}
-                className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-4 rounded-xl cursor-pointer hover:border-violet-500/50"
-              >
-                <span className="font-semibold">{cert}</span>
-                <Download size={16} className="text-violet-400" />
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-      </main>
-
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 py-10 text-center text-slate-500">
-        <p>Diseñado y construido con ❤️ por Milagros Alvarez.</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
-          <Mail size={16} /> <a href={`mailto:${data.about.email}`} className="hover:text-violet-400 transition-colors">{data.about.email}</a>
-        </div>
-      </footer>
+        <footer className="py-8 border-t border-white/5 text-center text-slate-500">
+          <p className="text-sm font-mono uppercase tracking-[3px]">© 2026 Milagros Alvarez</p>
+        </footer>
+      </div>
       
     </div>
   );
