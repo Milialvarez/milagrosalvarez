@@ -4,7 +4,7 @@ import { useState, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data";
 import { 
-  Download, Mail, Globe, 
+  Download, Mail, Globe, Sparkles, Send,
   ChevronLeft, ChevronRight, ExternalLink 
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -13,6 +13,7 @@ export default function Portfolio() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const data = portfolioData[lang];
   const [currentProject, setCurrentProject] = useState(0);
+  const [aiQuery, setAiQuery] = useState("");
 
   const nextProject = () => setCurrentProject((prev) => (prev + 1) % data.projects.items.length);
   const prevProject = () => setCurrentProject((prev) => (prev - 1 + data.projects.items.length) % data.projects.items.length);
@@ -29,22 +30,27 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0B] text-slate-200 font-sans selection:bg-violet-500/30 overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#070708] text-slate-200 font-sans selection:bg-violet-500/30 overflow-x-hidden">
       
-      <div className="fixed inset-0 z-[0] pointer-events-none opacity-50">
+      {/* FONDO ANIMADO SUTIL (ORBES REFORZADOS) */}
+      <div className="fixed inset-0 z-[0] pointer-events-none">
         <motion.div
           animate={{
-            transform: ["translate(0%, 0%) scale(1)", "translate(5%, 5%) scale(1.1)", "translate(0%, 0%) scale(1)"],
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.2, 1],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-violet-900/20 blur-[150px]"
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-violet-600/10 blur-[120px]"
         />
         <motion.div
           animate={{
-            transform: ["translate(0%, 0%) scale(1)", "translate(-5%, -5%) scale(1.2)", "translate(0%, 0%) scale(1)"],
+            x: [0, -40, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.1, 1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-[40%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-blue-900/10 blur-[150px]"
+          transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 2 }}
+          className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px]"
         />
       </div>
 
@@ -57,7 +63,7 @@ export default function Portfolio() {
             </motion.span>
             
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-              {['about', 'experience', 'projects', 'education', 'contact'].map((section) => (
+              {['about', 'experience', 'projects', 'education', 'ai', 'contact'].map((section) => (
                 <a 
                   key={section}
                   href={`#${section}`} 
@@ -82,7 +88,7 @@ export default function Portfolio() {
         <main className="max-w-6xl mx-auto px-6 pt-20 pb-10">
           
           {/* HERO SECTION */}
-          <section id="about" className="min-h-screen flex flex-col justify-center">
+          <section id="home" className="min-h-[90vh] flex flex-col justify-center">
             <div className="grid md:grid-cols-12 gap-12 items-center">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
@@ -99,7 +105,7 @@ export default function Portfolio() {
                 <h3 className="text-2xl md:text-3xl font-bold text-slate-400 mb-8 italic">
                   {data.hero.role}
                 </h3>
-                <p className="max-w-2xl text-lg text-slate-400 leading-relaxed mb-10">
+                <p className="max-w-xl text-lg text-slate-400 leading-relaxed mb-10">
                   {data.hero.description}
                 </p>
                 
@@ -141,6 +147,40 @@ export default function Portfolio() {
             </div>
           </section>
 
+          {/* SECCIÓN SOBRE MÍ */}
+          <section id="about" className="py-24 border-t border-white/5">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-4xl font-bold mb-8 text-white">{data.about.title}</h3>
+                <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
+                  {data.about.text.map((p, i) => (
+                    <p key={i} dangerouslySetInnerHTML={{ __html: p.replace(/\*\*(.*?)\*\*/g, '<span class="text-violet-400 font-bold">$1</span>') }} />
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="relative group"
+              >
+                <div className="absolute -inset-4 bg-gradient-to-tr from-violet-500 to-blue-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+                <div className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 bg-[#121214]">
+                  <img 
+                    src={data.about.image} 
+                    alt="Milagros Alvarez" 
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* EXPERIENCIA */}
           <section id="experience" className="py-24">
             <h3 className="text-4xl font-bold mb-16 text-white">{data.experience.title}</h3>
@@ -176,7 +216,7 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* PROYECTOS */}
+          {/* PROYECTOS CON CAPTURAS DE PANTALLA */}
           <section id="projects" className="py-24">
             <div className="flex justify-between items-end mb-12">
               <h3 className="text-4xl font-bold text-white">{data.projects.title}</h3>
@@ -196,8 +236,17 @@ export default function Portfolio() {
                   transition={{ duration: 0.4 }}
                   className="grid md:grid-cols-2 gap-12 items-center"
                 >
-                  <div className="aspect-video bg-slate-900 rounded-2xl flex items-center justify-center border border-white/5">
-                    <span className="text-slate-600 font-bold uppercase tracking-[10px]">Preview</span>
+                  <div className="aspect-video bg-slate-900 rounded-2xl flex items-center justify-center border border-white/5 relative group overflow-hidden shadow-2xl">
+                    {data.projects.items[currentProject].image ? (
+                      <img 
+                        src={data.projects.items[currentProject].image} 
+                        alt={data.projects.items[currentProject].title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <span className="text-slate-600 font-bold uppercase tracking-[10px]">No Image</span>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] via-transparent to-transparent opacity-60" />
                   </div>
                   <div>
                     <h4 className="text-3xl font-bold text-white mb-4">{data.projects.items[currentProject].title}</h4>
@@ -245,6 +294,7 @@ export default function Portfolio() {
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 bg-[#121214] p-6 rounded-2xl border border-white/5"
                   >
+                    <span className="text-3xl mt-1">{cert.icon}</span>
                     <div>
                       <span className="font-bold text-lg text-white block mb-1">{cert.name}</span>
                       <p className="text-slate-400 text-sm leading-relaxed">{cert.description}</p>
@@ -255,9 +305,47 @@ export default function Portfolio() {
             </div>
           </section>
 
+          {/* SECCIÓN AI CONSULTANT */}
+          <section id="ai" className="py-24">
+            <div className="bg-[#121214] border border-white/5 rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10">
+                <Sparkles size={120} className="text-violet-500" />
+              </div>
+              
+              <div className="relative z-10 max-w-2xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="bg-violet-500/20 text-violet-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <Sparkles size={14}/> AI Assistant
+                  </span>
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-4">{data.ai.title}</h3>
+                <p className="text-slate-400 text-lg mb-8">{data.ai.description}</p>
+                
+                <div className="flex flex-col gap-4">
+                  <div className="relative">
+                    <input 
+                      type="text" 
+                      value={aiQuery}
+                      onChange={(e) => setAiQuery(e.target.value)}
+                      placeholder={data.ai.placeholder}
+                      className="w-full bg-[#0A0A0B] border border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-violet-500 transition-colors pr-16 text-slate-200"
+                    />
+                    <button className="absolute right-3 top-2 bottom-2 bg-violet-600 hover:bg-violet-500 text-white px-4 rounded-xl transition-all">
+                      <Send size={18} />
+                    </button>
+                  </div>
+                  
+                  <div className="bg-[#0A0A0B]/50 border border-white/5 rounded-2xl p-6 min-h-[100px] flex items-center justify-center text-slate-500 italic">
+                    {data.ai.responsePlaceholder}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* CONTACTO */}
           <section id="contact" className="py-24">
-            <div className="max-w-4xl mx-auto relative rounded-[2rem] bg-[#111113] border border-white/5 p-12 md:p-20 text-center overflow-hidden shadow-2xl">
+            <div className="max-w-4xl mx-auto relative rounded-[2.5rem] bg-[#111113] border border-white/5 p-12 md:p-20 text-center overflow-hidden shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500" />
               
               <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">

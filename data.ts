@@ -6,19 +6,36 @@ export const portfolioData = {
       experience: "Experiencia",
       projects: "Proyectos",
       education: "Formación",
+      ai: "Preguntale a mi IA",
       contact: "Contacto",
     },
     hero: {
       greeting: "Hola, soy",
       name: "Milagros Alvarez",
       role: "Software Developer & Fullstack Engineer",
-      description: "Impulsada por la curiosidad técnica y la excelencia académica. Me especializo en diseñar soluciones escalables donde la arquitectura limpia y la inteligencia artificial convergen. Mi enfoque no es solo escribir código, sino liderar procesos de transformación digital con impacto real.",
+      description: "Especialista en construir soluciones robustas donde la ingeniería de sistemas y el desarrollo moderno se encuentran. Enfocada en escalabilidad y código limpio.",
       downloadCV: "Descargar CV",
       stats: {
         exp: "+1 Año de Exp.",
         projects: "+6 Proyectos",
         github: "+1400 Contribuciones"
       }
+    },
+    about: {
+      title: "Detrás del Código",
+      image: "/perfil.jpeg", 
+      text: [
+        "Soy Técnica Universitaria en Desarrollo de Aplicaciones y actual estudiante de Ingeniería en Sistemas en la UNICEN. Mi enfoque principal es el **Desarrollo Backend**, donde transformo problemas complejos en arquitecturas eficientes.",
+        "A lo largo de mi trayectoria, he consolidado una base sólida en el ecosistema de **Java, Python y TypeScript**, trabajando en entornos reales que exigen alta disponibilidad y escalabilidad. Mi experiencia en **Magno (Software Solutions)** me ha permitido liderar diseños de backend utilizando patrones como Arquitectura Hexagonal y Microservicios.",
+        "No solo escribo código; diseño soluciones. Me apasiona aplicar **Clean Code y Metodologías Ágiles (Scrum)** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo. Actualmente, busco desafíos donde pueda potenciar mis habilidades en backend y seguir innovando con tecnologías emergentes."
+      ]
+    },
+    ai: {
+      title: "Consultora de Perfil (AI)",
+      description: "¿Tenés dudas sobre mi experiencia o stack técnico? Mi asistente entrenado puede responderte en tiempo real.",
+      placeholder: "Ej: ¿Qué experiencia tiene Milagros con arquitecturas hexagonales?",
+      button: "Consultar IA",
+      responsePlaceholder: "La respuesta aparecerá aquí..."
     },
     experience: {
       title: "Trayectoria Profesional",
@@ -46,25 +63,50 @@ export const portfolioData = {
           title: "CIRO - Gestión Integral",
           description: "Liderazgo del backend para una plataforma odontológica crítica. Implementación de lógica financiera y administrativa con Java/Spring Boot.",
           link: "https://github.com/magnoitsystems/ciro-backend",
-          demo: "#" 
+          demo: "https://ciro-frontend.vercel.app/",
+          image: "/public/ciro.png"
         },
         {
           title: "Galpón Vial Municipal",
           description: "Digitalización total de procesos de auditoría para el sector público. Arquitectura Fullstack con NestJS y React.",
           link: "https://github.com/malvarezgayral/galponvial-intranet-backend",
-          demo: "#"
+          demo: "https://galponvial.loberia.gob.ar/login",
+          image: "/public/galpon.png"
         },
         {
           title: "Project Tasks Assistant (AI)",
-          description: "Agente inteligente con RAG para la organización de equipos ágiles. Mi incursión más fuerte en IA aplicada.",
+          description: "Agente inteligente con RAG para la organización de equipos ágiles. No solo funciona como una herramienta para gestionar proyectos, tareas y sprints, sino que provee un chatbot que genera análisis, métricas y responde preguntas basándose en el contexto de tu proyecto.",
           link: "https://github.com/Milialvarez/project-tasks-assistant",
-          demo: "#"
+          demo: "",
+          image: "/public/project.jpeg"
+        },
+        {
+          title: "Prompt Injection Detector - AI Firewall",
+          description: "Un firewall diseñado para diferenciar prompts seguros de maliciosos. Desarrollé desde cero un Gateway de Seguridad basado en Machine Learning que intercepta y analiza los prompts antes de que lleguen al modelo principal.",
+          link: "https://github.com/Milialvarez/project-tasks-assistant",
+          demo: "https://prompt-injection-detector.streamlit.app/",
+          image: "/public/prompt.png"
         },
         {
           title: "Agapanthus Departments",
           description: "Aplicación web con diseño UX/UI premium. Gestión de reseñas y almacenamiento en PostgreSQL con Prisma ORM.",
           link: "https://github.com/magnoitsystems/Agapanthus-Departments",
-          demo: "https://www.agapanthuslasmarias.com/"
+          demo: "https://www.agapanthuslasmarias.com/",
+          image: "/public/agapanthus.png"
+        },
+        {
+          title: "Flora Cordeiro Inmobiliaria",
+          description: "Aplicación web desarrollada con Next.js, Prisma ORM y PostgreSQL para brindar optimización al trabajo inmobiliario, permitiendo manejo de sesiones, CRUD de propiedades, formulario de contacto, entre otros.",
+          link: "https://github.com/magnoitsystems/Flora-inmobiliaria",
+          demo: "https://flora-cordeiro-inmobiliaria.vercel.app/",
+          image: "/public/flora.png"
+        },
+        {
+          title: "Jornadas Interhospitalarias de Pediatría Tandil",
+          description: "Aplicación web desarrollada con Next.js, Prisma ORM y PostgreSQL con el objetivo de publicitar y dar soporte a las necesidades de las jornadas interhospitalarias de pediatría en Tandil 2025. Permite el registro de usuarios a la jornada, generación de contraseñas automáticas, subida de manuscritos, acceso de administrador diferenciado, entre otros.",
+          link: "https://github.com/magnoitsystems/proyecto-jornadas-interhospitalarias",
+          demo: "https://www.jornadasinterhospitalariastandil.com/",
+          image: "/public/jornadas.png"
         }
       ]
     },
@@ -118,19 +160,36 @@ export const portfolioData = {
       experience: "Experience",
       projects: "Projects",
       education: "Education",
+      ai: "Ask my AI",
       contact: "Contact",
     },
     hero: {
       greeting: "Hi, I'm",
       name: "Milagros Alvarez",
       role: "Software Developer & Fullstack Engineer",
-      description: "Driven by technical curiosity and academic excellence. I specialize in designing scalable solutions where clean architecture and AI converge. My focus isn't just writing code, but leading digital transformation processes with real impact.",
+      description: "Specializing in building robust solutions where systems engineering and modern development meet. Focused on scalability and clean code.",
       downloadCV: "Download CV",
       stats: {
         exp: "+1 Year Exp.",
         projects: "+6 Projects",
         github: "+1400 Contributions"
       }
+    },
+    about: {
+      title: "Behind the Code",
+      image: "/perfil.png",
+      text: [
+        "I am a University Technician in Application Development and a current Systems Engineering student at UNICEN. My main focus is **Backend Development**, where I transform complex problems into efficient architectures.",
+        "Throughout my career, I have consolidated a solid foundation in the **Java, Python, and TypeScript** ecosystem, working in real environments that demand high availability and scalability. My experience at **Magno (Software Solutions)** has allowed me to lead backend designs using patterns such as Hexagonal Architecture and Microservices.",
+        "I don't just write code; I design solutions. I am passionate about applying **Clean Code and Agile Methodologies (Scrum)** to ensure that every delivery provides real value and is maintainable in the long term."
+      ]
+    },
+    ai: {
+      title: "Profile Consultant (AI)",
+      description: "Have doubts about my experience or technical stack? My trained assistant can answer you in real-time.",
+      placeholder: "e.g., What is Milagros' experience with hexagonal architectures?",
+      button: "Consult AI",
+      responsePlaceholder: "The response will appear here..."
     },
     experience: {
       title: "Professional Background",
