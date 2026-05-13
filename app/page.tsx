@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, MouseEvent } from "react";
@@ -286,23 +287,36 @@ export default function Portfolio() {
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold mb-12 text-white">{data.education.certifications.title}</h3>
-              <div className="grid grid-cols-1 gap-6">
-                {data.education.certifications.list.map((cert, i) => (
-                  <motion.div 
-                    key={i} 
-                    whileHover={{ x: 5 }}
-                    className="flex items-start gap-4 bg-[#121214] p-6 rounded-2xl border border-white/5"
-                  >
-                    <span className="text-3xl mt-1">{cert.icon}</span>
-                    <div>
+            <h3 className="text-3xl font-bold mb-12 text-white">{data.education.certifications.title}</h3>
+            <div className="grid grid-cols-1 gap-6">
+              {data.education.certifications.list.map((cert: any, i: number) => (
+                <motion.div 
+                  key={i} 
+                  whileHover={{ x: 5 }}
+                  className="flex items-start gap-4 bg-[#121214] p-6 rounded-2xl border border-white/5 group"
+                >
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start">
                       <span className="font-bold text-lg text-white block mb-1">{cert.name}</span>
-                      <p className="text-slate-400 text-sm leading-relaxed">{cert.description}</p>
+                      {cert.file && (
+                        <motion.a
+                          href={cert.file}
+                          download
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="text-slate-500 hover:text-violet-400 p-2 bg-white/5 rounded-lg transition-colors"
+                          title="Descargar Certificado"
+                        >
+                          <Download size={18} />
+                        </motion.a>
+                      )}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                    <p className="text-slate-400 text-sm leading-relaxed">{cert.description}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+          </div>
           </section>
 
           {/* SECCIÓN AI CONSULTANT */}

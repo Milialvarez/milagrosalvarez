@@ -129,9 +129,24 @@ export const portfolioData = {
       certifications: {
         title: "Logros y Certificados",
         list: [
-          { name: "EF Set English C1", icon: "🇬🇧", description: "Nivel avanzado para entornos técnicos." },
-          { name: "QA Testing", icon: "🔍", description: "IT School. Estrategias de calidad de software." },
-          { name: "Automatización", icon: "🤖", description: "IT School. CI/CD y scripting de pruebas." }
+          { 
+            name: "EF Set English C1 (Advanced)", 
+            icon: "🇬🇧",
+            description: "Acreditación internacional de nivel avanzado.", 
+            file: "/EF SET Certificate Milagros Alvarez.pdf" 
+          },
+          { 
+            name: "QA Testing", 
+            icon: "🔍",
+            description: "IT School. Creación de casos de prueba, reportes de bugs, tipos de testing.", 
+            file: "/Testing QA - Milagros Alvarez.pdf"
+          },
+          { 
+            name: "Fundamentos de Automatización", 
+            icon: "🤖",
+            description: "IT School. Bases de integración continua, fundamentos teóricos de RPA", 
+            file: "/Fundamentos de la automatización - Milagros Alvarez.pdf"
+          }
         ]
       }
     },
@@ -271,9 +286,24 @@ export const portfolioData = {
       certifications: {
         title: "Achievements",
         list: [
-          { name: "EF Set English C1", icon: "🇬🇧", description: "Advanced level for technical environments." },
-          { name: "QA Testing", icon: "🔍", description: "Software quality strategies and bug reporting." },
-          { name: "Automation", icon: "🤖", description: "CI/CD foundations and test scripting." }
+          { 
+            name: "EF Set English C1 (Advanced)", 
+            icon: "🇬🇧",
+            description: "International accreditation. Proficiency in technical vocabulary.", 
+            file: "/EF SET Certificate Milagros Alvarez.pdf" 
+          },
+          { 
+            name: "QA Testing", 
+            icon: "🔍",
+            description: "IT School. Test cases creation, bugs reports.", 
+            file: "/Testing QA - Milagros Alvarez.pdf"
+          },
+          { 
+            name: "Fundamentos de Automatización", 
+            icon: "🤖",
+            description: "IT School. RPA foundations.", 
+            file: "/Fundamentos de la automatización - Milagros Alvarez.pdf"
+          }
         ]
       }
     },
