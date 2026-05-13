@@ -17,7 +17,7 @@ export const portfolioData = {
       downloadCV: "Descargar CV",
       stats: {
         exp: "+1 Año de Exp.",
-        projects: "+6 Proyectos",
+        projects: "+7 Proyectos",
         github: "+1400 Contribuciones"
       }
     },
@@ -27,7 +27,7 @@ export const portfolioData = {
       text: [
         "Soy Técnica Universitaria en Desarrollo de Aplicaciones y actual estudiante de Ingeniería en Sistemas en la UNICEN. Mi enfoque principal es el **Desarrollo Backend**, donde transformo problemas complejos en arquitecturas eficientes.",
         "A lo largo de mi trayectoria, he consolidado una base sólida en el ecosistema de **Java, Python y TypeScript**, trabajando en entornos reales que exigen alta disponibilidad y escalabilidad. Mi experiencia en **Magno (Software Solutions)** me ha permitido liderar diseños de backend utilizando patrones como Arquitectura Hexagonal y Microservicios.",
-        "No solo escribo código; diseño soluciones. Me apasiona aplicar **Clean Code y Metodologías Ágiles (Scrum)** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo. Actualmente, busco desafíos donde pueda potenciar mis habilidades en backend y seguir innovando con tecnologías emergentes."
+        "No solo escribo código; diseño soluciones. Me apasiona aplicar **Clean Code y Metodologías Ágiles (Scrum)** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo."
       ]
     },
     ai: {
@@ -61,52 +61,52 @@ export const portfolioData = {
       items: [
         {
           title: "CIRO - Gestión Integral",
-          description: "Liderazgo del backend para una plataforma odontológica crítica. Implementación de lógica financiera y administrativa con Java/Spring Boot.",
+          description: "Liderazgo del backend para una plataforma odontológica crítica. Implementación de lógica financiera y administrativa compleja, gestión de turnos y expedientes médicos utilizando Java y Spring Boot.",
           link: "https://github.com/magnoitsystems/ciro-backend",
           demo: "https://ciro-frontend.vercel.app/",
-          image: "/public/ciro.png"
+          image: "/ciro.png" 
         },
         {
           title: "Galpón Vial Municipal",
-          description: "Digitalización total de procesos de auditoría para el sector público. Arquitectura Fullstack con NestJS y React.",
+          description: "Sistema de digitalización para procesos de auditoría y control de stock en el sector público. Desarrollado con NestJS para un backend robusto y React para una interfaz administrativa eficiente.",
           link: "https://github.com/malvarezgayral/galponvial-intranet-backend",
           demo: "https://galponvial.loberia.gob.ar/login",
-          image: "/public/galpon.png"
+          image: "/galpon.png"
         },
         {
           title: "Project Tasks Assistant (AI)",
-          description: "Agente inteligente con RAG para la organización de equipos ágiles. No solo funciona como una herramienta para gestionar proyectos, tareas y sprints, sino que provee un chatbot que genera análisis, métricas y responde preguntas basándose en el contexto de tu proyecto.",
+          description: "Agente inteligente con RAG (Retrieval-Augmented Generation). Permite gestionar proyectos y sprints mediante un chatbot que analiza métricas y genera reportes basados en el contexto real de las tareas.",
           link: "https://github.com/Milialvarez/project-tasks-assistant",
-          demo: "",
-          image: "/public/project.jpeg"
+          demo: "#",
+          image: "/project.jpeg"
         },
         {
-          title: "Prompt Injection Detector - AI Firewall",
-          description: "Un firewall diseñado para diferenciar prompts seguros de maliciosos. Desarrollé desde cero un Gateway de Seguridad basado en Machine Learning que intercepta y analiza los prompts antes de que lleguen al modelo principal.",
+          title: "Prompt Injection Detector",
+          description: "Firewall de seguridad para LLMs. Gateway desarrollado con Machine Learning que intercepta y analiza prompts en tiempo real para prevenir ataques de inyección y filtrar contenido malicioso.",
           link: "https://github.com/Milialvarez/project-tasks-assistant",
           demo: "https://prompt-injection-detector.streamlit.app/",
-          image: "/public/prompt.png"
+          image: "/prompt.png"
         },
         {
           title: "Agapanthus Departments",
-          description: "Aplicación web con diseño UX/UI premium. Gestión de reseñas y almacenamiento en PostgreSQL con Prisma ORM.",
+          description: "Plataforma premium de alquileres temporarios con enfoque en UX/UI. Incluye sistema de reseñas, gestión de disponibilidad y almacenamiento persistente en PostgreSQL mediante Prisma ORM.",
           link: "https://github.com/magnoitsystems/Agapanthus-Departments",
           demo: "https://www.agapanthuslasmarias.com/",
-          image: "/public/agapanthus.png"
+          image: "/agapanthus.png"
         },
         {
           title: "Flora Cordeiro Inmobiliaria",
-          description: "Aplicación web desarrollada con Next.js, Prisma ORM y PostgreSQL para brindar optimización al trabajo inmobiliario, permitiendo manejo de sesiones, CRUD de propiedades, formulario de contacto, entre otros.",
+          description: "Solución integral para gestión inmobiliaria. Manejo de sesiones seguras, CRUD avanzado de propiedades y formularios dinámicos integrados con una arquitectura Next.js escalable.",
           link: "https://github.com/magnoitsystems/Flora-inmobiliaria",
           demo: "https://flora-cordeiro-inmobiliaria.vercel.app/",
-          image: "/public/flora.png"
+          image: "/flora.png"
         },
         {
-          title: "Jornadas Interhospitalarias de Pediatría Tandil",
-          description: "Aplicación web desarrollada con Next.js, Prisma ORM y PostgreSQL con el objetivo de publicitar y dar soporte a las necesidades de las jornadas interhospitalarias de pediatría en Tandil 2025. Permite el registro de usuarios a la jornada, generación de contraseñas automáticas, subida de manuscritos, acceso de administrador diferenciado, entre otros.",
+          title: "Jornadas Interhospitalarias",
+          description: "Sistema de soporte para congresos médicos. Gestión de registros, generación automática de credenciales y plataforma de subida de manuscritos científicos con panel de administración diferenciado.",
           link: "https://github.com/magnoitsystems/proyecto-jornadas-interhospitalarias",
           demo: "https://www.jornadasinterhospitalariastandil.com/",
-          image: "/public/jornadas.png"
+          image: "/jornadas.png"
         }
       ]
     },
@@ -117,40 +117,28 @@ export const portfolioData = {
           degree: "Ingeniería de Sistemas",
           institution: "UNICEN",
           date: "2025 - Presente (3er año aprobado)",
-          description: "Formación integral enfocada en ciencias de la computación, diseño de algoritmos, arquitecturas complejas y resolución de problemas a gran escala."
+          description: "Ciencias de la computación, diseño de algoritmos y arquitecturas de software a gran escala."
         },
         {
           degree: "Tecnicatura Univ. en Desarrollo de Apps",
           institution: "UNICEN",
           date: "2023 - 2025 (Graduada)",
-          description: "Carrera práctica orientada al desarrollo de software Fullstack, bases de datos, patrones de diseño y metodologías ágiles de trabajo."
+          description: "Desarrollo Fullstack, bases de datos y metodologías ágiles."
         }
       ],
       certifications: {
         title: "Logros y Certificados",
         list: [
-          { 
-            name: "EF Set English C1 (Advanced)", 
-            icon: "🇬🇧",
-            description: "Acreditación internacional de nivel avanzado. Capacidad para comunicarse fluidamente en entornos técnicos y de negocios." 
-          },
-          { 
-            name: "QA Testing", 
-            icon: "🔍",
-            description: "IT School. Creación de casos de prueba, reporte de bugs y estrategias para asegurar la calidad y fiabilidad del software." 
-          },
-          { 
-            name: "Fundamentos de Automatización", 
-            icon: "🤖",
-            description: "IT School. Bases de integración continua, scripting y automatización de pruebas para optimizar ciclos de entrega." 
-          }
+          { name: "EF Set English C1", icon: "🇬🇧", description: "Nivel avanzado para entornos técnicos." },
+          { name: "QA Testing", icon: "🔍", description: "IT School. Estrategias de calidad de software." },
+          { name: "Automatización", icon: "🤖", description: "IT School. CI/CD y scripting de pruebas." }
         ]
       }
     },
     contact: {
       title: "Construyamos algo escalable",
-      subtitle: "Actualmente estoy abierta a nuevas oportunidades. Ya sea que tengas una pregunta, un proyecto en mente o solo quieras saludar, ¡haré lo posible por responderte!",
-      button: "Say Hello",
+      subtitle: "¿Tienes un proyecto en mente o solo quieres saludar? ¡Hablemos!",
+      button: "Enviar Mail",
       email: "milagrosalvarez2604@gmail.com"
     }
   },
@@ -171,40 +159,40 @@ export const portfolioData = {
       downloadCV: "Download CV",
       stats: {
         exp: "+1 Year Exp.",
-        projects: "+6 Projects",
+        projects: "+7 Projects",
         github: "+1400 Contributions"
       }
     },
     about: {
       title: "Behind the Code",
-      image: "/perfil.png",
+      image: "/perfil.jpeg",
       text: [
-        "I am a University Technician in Application Development and a current Systems Engineering student at UNICEN. My main focus is **Backend Development**, where I transform complex problems into efficient architectures.",
-        "Throughout my career, I have consolidated a solid foundation in the **Java, Python, and TypeScript** ecosystem, working in real environments that demand high availability and scalability. My experience at **Magno (Software Solutions)** has allowed me to lead backend designs using patterns such as Hexagonal Architecture and Microservices.",
-        "I don't just write code; I design solutions. I am passionate about applying **Clean Code and Agile Methodologies (Scrum)** to ensure that every delivery provides real value and is maintainable in the long term."
+        "I am a University Technician in Application Development and a current Systems Engineering student at UNICEN. My main focus is **Backend Development**, transforming complex problems into efficient architectures.",
+        "Throughout my career, I've built a solid foundation in **Java, Python, and TypeScript**, working in real-world environments demanding high availability. My experience at **Magno (Software Solutions)** includes leading backend designs using Hexagonal Architecture.",
+        "I don't just write code; I design solutions. I am passionate about **Clean Code and Agile Methodologies** to ensure every delivery provides long-term value."
       ]
     },
     ai: {
       title: "Profile Consultant (AI)",
-      description: "Have doubts about my experience or technical stack? My trained assistant can answer you in real-time.",
-      placeholder: "e.g., What is Milagros' experience with hexagonal architectures?",
+      description: "Have questions about my experience? My AI assistant can answer you in real-time.",
+      placeholder: "e.g., What is Milagros' experience with backend architectures?",
       button: "Consult AI",
       responsePlaceholder: "The response will appear here..."
     },
     experience: {
-      title: "Professional Background",
+      title: "Professional Path",
       items: [
         {
           role: "Fullstack Software Developer",
           company: "MAGNO (Software Solutions)",
           date: "February 2025 - Present",
           responsibilities: [
-            "Technical leadership in scalable architecture design using Java (Spring Boot) and TypeScript (NestJS).",
-            "Proactive integration of AI models to optimize internal and client processes.",
-            "Development of highly interactive user interfaces with Next.js and Tailwind CSS.",
-            "Agile management under Scrum frameworks, ensuring high-value continuous delivery."
+            "Technical leadership in scalable architectures using Spring Boot and NestJS.",
+            "Proactive AI integration to optimize internal workflows and client products.",
+            "Developing interactive UIs with Next.js and Tailwind CSS.",
+            "Agile management under Scrum frameworks for high-value delivery."
           ],
-          softSkills: "Technical leadership, Clear architecture communication, Analytical complex problem solving."
+          softSkills: "Technical leadership, Clear architecture communication, Analytical problem solving."
         }
       ]
     },
@@ -215,70 +203,83 @@ export const portfolioData = {
       items: [
         {
           title: "CIRO - Management System",
-          description: "Backend leadership for a critical dental platform. Implementation of financial and administrative logic with Java/Spring Boot.",
+          description: "Backend leadership for a critical dental platform. Implementing complex financial logic, appointment scheduling, and medical records using Java and Spring Boot.",
           link: "https://github.com/magnoitsystems/ciro-backend",
-          demo: "#"
+          demo: "https://ciro-frontend.vercel.app/",
+          image: "/ciro.png"
         },
         {
           title: "Municipal Road Warehouse",
-          description: "Total digitalization of audit processes for the public sector. Fullstack architecture with NestJS and React.",
+          description: "Digitalization system for audit processes and stock control in the public sector. Built with NestJS for a robust backend and React for an efficient admin interface.",
           link: "https://github.com/malvarezgayral/galponvial-intranet-backend",
-          demo: "#"
+          demo: "https://galponvial.loberia.gob.ar/login",
+          image: "/galpon.png"
         },
         {
           title: "Project Tasks Assistant (AI)",
-          description: "Intelligent RAG agent for agile team organization. My strongest venture into applied AI.",
+          description: "Intelligent agent featuring RAG (Retrieval-Augmented Generation). Manages projects and sprints via a chatbot that analyzes metrics based on real task context.",
           link: "https://github.com/Milialvarez/project-tasks-assistant",
-          demo: "#"
+          demo: "#",
+          image: "/project.jpeg"
+        },
+        {
+          title: "Prompt Injection Detector",
+          description: "AI Security Firewall. A Machine Learning-based gateway that intercepts and analyzes prompts in real-time to prevent injection attacks and filter malicious content.",
+          link: "https://github.com/Milialvarez/project-tasks-assistant",
+          demo: "https://prompt-injection-detector.streamlit.app/",
+          image: "/prompt.png"
         },
         {
           title: "Agapanthus Departments",
-          description: "Web application with premium UX/UI design. Review management and PostgreSQL storage with Prisma ORM.",
+          description: "Premium short-term rental platform with a UX/UI focus. Features a review system, availability management, and PostgreSQL storage via Prisma ORM.",
           link: "https://github.com/magnoitsystems/Agapanthus-Departments",
-          demo: "https://www.agapanthuslasmarias.com/"
+          demo: "https://www.agapanthuslasmarias.com/",
+          image: "/agapanthus.png"
+        },
+        {
+          title: "Flora Cordeiro Real Estate",
+          description: "Comprehensive real estate management solution. Features secure session handling, advanced property CRUD, and dynamic forms built on a scalable Next.js architecture.",
+          link: "https://github.com/magnoitsystems/Flora-inmobiliaria",
+          demo: "https://flora-cordeiro-inmobiliaria.vercel.app/",
+          image: "/flora.png"
+        },
+        {
+          title: "Pediatric Congress Platform",
+          description: "Support system for medical conferences. Handles registration, automated credential generation, and scientific manuscript uploads with a dedicated admin panel.",
+          link: "https://github.com/magnoitsystems/proyecto-jornadas-interhospitalarias",
+          demo: "https://www.jornadasinterhospitalariastandil.com/",
+          image: "/jornadas.png"
         }
       ]
     },
     education: {
-      title: "Education & Background",
+      title: "Academic Education",
       items: [
         {
           degree: "Systems Engineering",
           institution: "UNICEN",
           date: "2025 - Present (3rd year completed)",
-          description: "Comprehensive background focused on computer science, algorithm design, complex architectures, and large-scale problem solving."
+          description: "Computer science, algorithm design, and large-scale software architecture."
         },
         {
-          degree: "University Degree in Software Dev",
+          degree: "Software Dev University Degree",
           institution: "UNICEN",
           date: "2023 - 2025 (Graduated)",
-          description: "Practical degree oriented towards Fullstack software development, databases, design patterns, and agile work methodologies."
+          description: "Fullstack development, databases, and agile methodologies."
         }
       ],
       certifications: {
-        title: "Achievements & Certificates",
+        title: "Achievements",
         list: [
-          { 
-            name: "EF Set English C1 (Advanced)", 
-            icon: "🇬🇧",
-            description: "International accreditation of advanced level. Ability to communicate fluently in technical and business environments." 
-          },
-          { 
-            name: "QA Testing", 
-            icon: "🔍",
-            description: "IT School. Creation of test cases, bug reporting, and strategies to ensure software quality and reliability." 
-          },
-          { 
-            name: "Automation Fundamentals", 
-            icon: "🤖",
-            description: "IT School. Foundations of continuous integration, scripting, and test automation to optimize delivery cycles." 
-          }
+          { name: "EF Set English C1", icon: "🇬🇧", description: "Advanced level for technical environments." },
+          { name: "QA Testing", icon: "🔍", description: "Software quality strategies and bug reporting." },
+          { name: "Automation", icon: "🤖", description: "CI/CD foundations and test scripting." }
         ]
       }
     },
     contact: {
       title: "Let's Build Something Scalable",
-      subtitle: "I'm currently open to new opportunities. Whether you have a question, a project in mind, or just want to say hi, I'll try my best to get back to you!",
+      subtitle: "Got a project in mind or just want to say hi? Let's talk!",
       button: "Say Hello",
       email: "milagrosalvarez2604@gmail.com"
     }
