@@ -33,7 +33,7 @@ export default function Portfolio() {
   return (
     <div className="relative min-h-screen bg-[#070708] text-slate-200 font-sans selection:bg-violet-500/30 overflow-x-hidden">
       
-      {/* FONDO ANIMADO SUTIL (ORBES REFORZADOS) */}
+      {/* FONDO ANIMADO SUTIL */}
       <div className="fixed inset-0 z-[0] pointer-events-none">
         <motion.div
           animate={{
