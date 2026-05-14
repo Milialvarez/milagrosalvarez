@@ -6,18 +6,51 @@ import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data";
 import { 
   Download, Mail, Globe, Sparkles, Send,
-  ChevronLeft, ChevronRight, ExternalLink 
+  ChevronLeft, ChevronRight, ExternalLink, 
+  Loader2
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Portfolio() {
-  const [lang, setLang] = useState<"es" | "en">("es");
+const [lang, setLang] = useState<"es" | "en">("es");
   const data = portfolioData[lang];
   const [currentProject, setCurrentProject] = useState(0);
   const [aiQuery, setAiQuery] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const nextProject = () => setCurrentProject((prev) => (prev + 1) % data.projects.items.length);
   const prevProject = () => setCurrentProject((prev) => (prev - 1 + data.projects.items.length) % data.projects.items.length);
+
+  const handleAiSearch = async () => {
+    if (!aiQuery.trim() || isLoading) return;
+
+    setIsLoading(true);
+    setAiResponse(""); 
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: aiQuery }]
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.content) {
+        setAiResponse(result.content);
+      } else {
+        setAiResponse("Lo siento, hubo un problema al procesar la respuesta.");
+      }
+    } catch (error) {
+      console.error("Error consultando la IA:", error);
+      setAiResponse("Error de conexion. Intentalo de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSmoothScroll = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -336,21 +369,44 @@ export default function Portfolio() {
                 <p className="text-slate-400 text-lg mb-8">{data.ai.description}</p>
                 
                 <div className="flex flex-col gap-4">
-                  <div className="relative">
+                  <form 
+                    onSubmit={(e) => { e.preventDefault(); handleAiSearch(); }}
+                    className="relative"
+                  >
                     <input 
                       type="text" 
                       value={aiQuery}
                       onChange={(e) => setAiQuery(e.target.value)}
                       placeholder={data.ai.placeholder}
-                      className="w-full bg-[#0A0A0B] border border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-violet-500 transition-colors pr-16 text-slate-200"
+                      disabled={isLoading}
+                      className="w-full bg-[#0A0A0B] border border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-violet-500 transition-colors pr-16 text-slate-200 disabled:opacity-50"
                     />
-                    <button className="absolute right-3 top-2 bottom-2 bg-violet-600 hover:bg-violet-500 text-white px-4 rounded-xl transition-all">
-                      <Send size={18} />
+                    <button 
+                      type="submit"
+                      disabled={isLoading || !aiQuery.trim()}
+                      className="absolute right-3 top-2 bottom-2 bg-violet-600 hover:bg-violet-500 text-white px-4 rounded-xl transition-all disabled:bg-slate-800 disabled:text-slate-500"
+                    >
+                      {isLoading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                     </button>
-                  </div>
+                  </form>
                   
-                  <div className="bg-[#0A0A0B]/50 border border-white/5 rounded-2xl p-6 min-h-[100px] flex items-center justify-center text-slate-500 italic">
-                    {data.ai.responsePlaceholder}
+                  <div className="bg-[#0A0A0B]/50 border border-white/5 rounded-2xl p-6 min-h-[120px] flex items-start text-slate-300 leading-relaxed overflow-y-auto">
+                    {isLoading ? (
+                      <div className="flex items-center gap-3 text-slate-500 italic">
+                        <Loader2 size={16} className="animate-spin text-violet-500" />
+                        Pensando...
+                      </div>
+                    ) : aiResponse ? (
+                      <motion.p 
+                        initial={{ opacity: 0 }} 
+                        animate={{ opacity: 1 }}
+                        className="whitespace-pre-wrap"
+                      >
+                        {aiResponse}
+                      </motion.p>
+                    ) : (
+                      <span className="text-slate-500 italic">{data.ai.responsePlaceholder}</span>
+                    )}
                   </div>
                 </div>
               </div>
