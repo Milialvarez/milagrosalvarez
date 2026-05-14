@@ -14,7 +14,7 @@ export const portfolioData = {
       greeting: "Hola, soy",
       name: "Milagros Alvarez",
       role: "Software Developer & Fullstack Engineer",
-      description: "Especialista en construir soluciones robustas donde la ingeniería de sistemas y el desarrollo moderno se encuentran. Enfocada en escalabilidad y código limpio.",
+      description: "Especialista en construir soluciones robustas donde la ingeniería de sistemas y el desarrollo moderno se encuentran. Enfocada en escalabilidad y código de calidad.",
       downloadCV: "Descargar CV",
       stats: {
         exp: "+1 Año de Exp.",
@@ -27,8 +27,8 @@ export const portfolioData = {
       image: "/perfil.jpeg", 
       text: [
         "Soy Técnica Universitaria en Desarrollo de Aplicaciones y actual estudiante de Ingeniería en Sistemas en la UNICEN. Mi enfoque principal es el **Desarrollo Backend**, donde transformo problemas complejos en arquitecturas eficientes.",
-        "A lo largo de mi trayectoria, he consolidado una base sólida en el ecosistema de **Java, Python y TypeScript**, trabajando en entornos reales que exigen alta disponibilidad y escalabilidad. Mi experiencia en **Magno (Software Solutions)** me ha permitido liderar diseños de backend utilizando patrones como Arquitectura Hexagonal y Microservicios.",
-        "No solo escribo código; diseño soluciones. Me apasiona aplicar **Clean Code y Metodologías Ágiles (Scrum)** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo."
+        "A lo largo de mi trayectoria, he consolidado una base sólida en el ecosistema de **Java, Python y TypeScript**, digitalizando procesos que optimicen el día a día de los clientes. Mi experiencia en **Magno (Software Solutions)** me ha permitido liderar diseños de backend y sumar criterio técnico a mis decisiones arquitectónicas.",
+        "No solo escribo código; diseño soluciones. Me apasiona aplicar **Metodologías Ágiles** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo."
       ]
     },
     experience: {
@@ -41,10 +41,10 @@ export const portfolioData = {
           responsibilities: [
             "Liderazgo técnico en el diseño de arquitecturas escalables utilizando Java (Spring Boot) y TypeScript (NestJS).",
             "Integración proactiva de modelos de IA para optimizar procesos internos y de clientes.",
-            "Desarrollo de interfaces de usuario altamente interactivas con Next.js y Tailwind CSS.",
+            "Desarrollo de interfaces de usuario altamente interactivas con Next.js, React y Tailwind CSS.",
             "Gestión ágil bajo marcos Scrum, asegurando entregas continuas de alto valor."
           ],
-          softSkills: "Liderazgo técnico, Comunicación clara de arquitectura, Resolución analítica de problemas complejos."
+          softSkills: "Liderazgo técnico, Comunicación asertiva, Resolución analítica de problemas complejos."
         }
       ]
     },
@@ -184,13 +184,13 @@ export const portfolioData = {
           { 
             name: "QA Testing", 
             icon: "🔍",
-            description: "IT School. Creación de casos de prueba, reportes de bugs, tipos de testing.", 
+            description: "IT School. Creación de casos de prueba, reportes de bugs, etc", 
             file: "/Testing QA - Milagros Alvarez.pdf"
           },
           { 
             name: "Fundamentos de Automatización", 
             icon: "🤖",
-            description: "IT School. Bases de integración continua, fundamentos teóricos de RPA", 
+            description: "IT School. Fundamentos teóricos de RPA", 
             file: "/Fundamentos de la automatización - Milagros Alvarez.pdf"
           }
         ]
@@ -205,7 +205,7 @@ export const portfolioData = {
     },
     contact: {
       title: "Construyamos algo escalable",
-      subtitle: "¿Tienes un proyecto en mente o solo quieres saludar? ¡Hablemos!",
+      subtitle: "Tenés un proyecto en mente o solo querés saludar? ¡Hablemos!",
       button: "Enviar Mail",
       email: "milagrosalvarez2604@gmail.com"
     }
