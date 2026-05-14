@@ -4,6 +4,7 @@ export const portfolioData = {
     nav: {
       about: "Sobre mí",
       experience: "Experiencia",
+      skills: "Habilidades",
       projects: "Proyectos",
       education: "Formación",
       ai: "Preguntale a mi IA",
@@ -30,13 +31,6 @@ export const portfolioData = {
         "No solo escribo código; diseño soluciones. Me apasiona aplicar **Clean Code y Metodologías Ágiles (Scrum)** para asegurar que cada entrega aporte valor real y sea mantenible a largo plazo."
       ]
     },
-    ai: {
-      title: "Consultora de Perfil (AI)",
-      description: "¿Tenés dudas sobre mi experiencia o stack técnico? Mi asistente entrenado puede responderte en tiempo real.",
-      placeholder: "Ej: ¿Qué experiencia tiene Milagros con arquitecturas hexagonales?",
-      button: "Consultar IA",
-      responsePlaceholder: "La respuesta aparecerá aquí..."
-    },
     experience: {
       title: "Trayectoria Profesional",
       items: [
@@ -51,6 +45,58 @@ export const portfolioData = {
             "Gestión ágil bajo marcos Scrum, asegurando entregas continuas de alto valor."
           ],
           softSkills: "Liderazgo técnico, Comunicación clara de arquitectura, Resolución analítica de problemas complejos."
+        }
+      ]
+    },
+  skills: {
+      headerTitle: "Ecosistema ",
+      headerHighlight: "Técnico",
+      headerSubtitle: "Arquitecturas robustas, interfaces intuitivas y soluciones inteligentes impulsadas por IA.",
+      categories: [
+        {
+          title: "Backend & Arquitectura",
+          items: [
+            { name: "Java", icon: "FaJava", color: "text-orange-500" },
+            { name: "Spring Boot", icon: "SiSpringboot", color: "text-green-500" },
+            { name: "TypeScript", icon: "SiTypescript", color: "text-blue-500" },
+            { name: "NestJS", icon: "SiNestjs", color: "text-red-500" },
+            { name: "Python", icon: "SiPython", color: "text-yellow-400" },
+            { name: "FastAPI", icon: "SiFastapi", color: "text-teal-400" }
+          ]
+        },
+        {
+          title: "Frontend & UI",
+          items: [
+            { name: "React", icon: "SiReact", color: "text-cyan-400" },
+            { name: "Next.js", icon: "SiNextdotjs", color: "text-white" },
+            { name: "Tailwind CSS", icon: "SiTailwindcss", color: "text-cyan-500" },
+            { name: "Angular", icon: "SiAngular", color: "text-red-600" }
+          ]
+        },
+        {
+          title: "Bases de Datos & Tools",
+          items: [
+            { name: "PostgreSQL", icon: "SiPostgresql", color: "text-blue-400" },
+            { name: "MySQL", icon: "SiMysql", color: "text-blue-500" },
+            { name: "JPA", icon: "FaDatabase", color: "text-slate-400" },
+            { name: "Prisma ORM", icon: "SiPrisma", color: "text-white" },
+            { name: "Git", icon: "SiGit", color: "text-orange-600" },
+            { name: "Docker", icon: "FaDocker", color: "text-blue-400" },
+            { name: "Scrum / Agile", icon: "FaProjectDiagram", color: "text-violet-400" }
+          ]
+        },
+        {
+          title: "AI & Automatización",
+          items: [
+            { name: "Langchain", icon: "SiLangchain", color: "text-green-400" },
+            { name: "PyTorch", icon: "SiPytorch", color: "text-orange-500" },
+            { name: "Hugging Face", icon: "SiHuggingface", color: "text-yellow-400" },
+            { name: "OpenAI", icon: "SiOpenai", color: "text-white" },
+            { name: "Gemini", icon: "SiGooglegemini", color: "text-blue-400" },
+            { name: "Pandas", icon: "SiPandas", color: "text-indigo-400" },
+            { name: "Streamlit", icon: "SiStreamlit", color: "text-red-400" },
+            { name: "Selenium", icon: "SiSelenium", color: "text-green-500" }
+          ]
         }
       ]
     },
@@ -150,6 +196,13 @@ export const portfolioData = {
         ]
       }
     },
+    ai: {
+      title: "Consultora de Perfil (AI)",
+      description: "¿Tenés dudas sobre mi experiencia o stack técnico? Mi asistente entrenado puede responderte en tiempo real.",
+      placeholder: "Ej: ¿Qué experiencia tiene Milagros con arquitecturas hexagonales?",
+      button: "Consultar IA",
+      responsePlaceholder: "La respuesta aparecerá aquí..."
+    },
     contact: {
       title: "Construyamos algo escalable",
       subtitle: "¿Tienes un proyecto en mente o solo quieres saludar? ¡Hablemos!",
@@ -161,6 +214,7 @@ export const portfolioData = {
     nav: {
       about: "About",
       experience: "Experience",
+      skills: "Skills",
       projects: "Projects",
       education: "Education",
       ai: "Ask my AI",
@@ -187,13 +241,6 @@ export const portfolioData = {
         "I don't just write code; I design solutions. I am passionate about **Clean Code and Agile Methodologies** to ensure every delivery provides long-term value."
       ]
     },
-    ai: {
-      title: "Profile Consultant (AI)",
-      description: "Have questions about my experience? My AI assistant can answer you in real-time.",
-      placeholder: "e.g., What is Milagros' experience with backend architectures?",
-      button: "Consult AI",
-      responsePlaceholder: "The response will appear here..."
-    },
     experience: {
       title: "Professional Path",
       items: [
@@ -208,6 +255,58 @@ export const portfolioData = {
             "Agile management under Scrum frameworks for high-value delivery."
           ],
           softSkills: "Technical leadership, Clear architecture communication, Analytical problem solving."
+        }
+      ]
+    },
+    skills: {
+      headerTitle: "Tech ",
+      headerHighlight: "Ecosystem",
+      headerSubtitle: "Robust architectures, intuitive interfaces, and smart AI-driven solutions.",
+      categories: [
+        {
+          title: "Backend & Architecture",
+          items: [
+            { name: "Java", icon: "FaJava", color: "text-orange-500" },
+            { name: "Spring Boot", icon: "SiSpringboot", color: "text-green-500" },
+            { name: "TypeScript", icon: "SiTypescript", color: "text-blue-500" },
+            { name: "NestJS", icon: "SiNestjs", color: "text-red-500" },
+            { name: "Python", icon: "SiPython", color: "text-yellow-400" },
+            { name: "FastAPI", icon: "SiFastapi", color: "text-teal-400" }
+          ]
+        },
+        {
+          title: "Frontend & UI",
+          items: [
+            { name: "React", icon: "SiReact", color: "text-cyan-400" },
+            { name: "Next.js", icon: "SiNextdotjs", color: "text-white" },
+            { name: "Tailwind CSS", icon: "SiTailwindcss", color: "text-cyan-500" },
+            { name: "Angular", icon: "SiAngular", color: "text-red-600" }
+          ]
+        },
+        {
+          title: "Databases & Tools",
+          items: [
+            { name: "PostgreSQL", icon: "SiPostgresql", color: "text-blue-400" },
+            { name: "MySQL", icon: "SiMysql", color: "text-blue-500" },
+            { name: "JPA", icon: "FaDatabase", color: "text-slate-400" },
+            { name: "Prisma ORM", icon: "SiPrisma", color: "text-white" },
+            { name: "Git", icon: "SiGit", color: "text-orange-600" },
+            { name: "Docker", icon: "FaDocker", color: "text-blue-400" },
+            { name: "Scrum / Agile", icon: "FaProjectDiagram", color: "text-violet-400" }
+          ]
+        },
+        {
+          title: "AI & Automation",
+          items: [
+            { name: "Langchain", icon: "SiLangchain", color: "text-green-400" },
+            { name: "PyTorch", icon: "SiPytorch", color: "text-orange-500" },
+            { name: "Hugging Face", icon: "SiHuggingface", color: "text-yellow-400" },
+            { name: "OpenAI", icon: "SiOpenai", color: "text-white" },
+            { name: "Gemini", icon: "SiGooglegemini", color: "text-blue-400" },
+            { name: "Pandas", icon: "SiPandas", color: "text-indigo-400" },
+            { name: "Streamlit", icon: "SiStreamlit", color: "text-red-400" },
+            { name: "Selenium", icon: "SiSelenium", color: "text-green-500" }
+          ]
         }
       ]
     },
@@ -306,6 +405,13 @@ export const portfolioData = {
           }
         ]
       }
+    },
+    ai: {
+      title: "Profile Consultant (AI)",
+      description: "Have questions about my experience? My AI assistant can answer you in real-time.",
+      placeholder: "e.g., What is Milagros' experience with backend architectures?",
+      button: "Consult AI",
+      responsePlaceholder: "The response will appear here..."
     },
     contact: {
       title: "Let's Build Something Scalable",

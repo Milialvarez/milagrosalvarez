@@ -9,10 +9,30 @@ import {
   ChevronLeft, ChevronRight, ExternalLink, 
   Loader2
 } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+import { 
+  FaGithub, FaLinkedin, FaProjectDiagram, 
+  FaJava, FaDocker, FaDatabase 
+} from "react-icons/fa";
+import { 
+  SiSpringboot, SiTypescript, SiNestjs, SiPython, SiFastapi,
+  SiReact, SiNextdotjs, SiTailwindcss, SiAngular, 
+  SiPostgresql, SiMysql, SiPrisma, SiGit, 
+  SiLangchain, SiPytorch, SiSelenium ,
+  SiHuggingface, SiOpenai, SiGooglegemini, SiPandas, SiStreamlit
+} from "react-icons/si";
+
+const iconMap: Record<string, any> = {
+  FaJava, FaDocker, FaDatabase, FaProjectDiagram,
+  SiSpringboot, SiTypescript, SiNestjs, SiPython, SiFastapi,
+  SiReact, SiNextdotjs, SiTailwindcss, SiAngular,
+  SiPostgresql, SiMysql, SiPrisma, SiGit,
+  SiLangchain, SiPytorch, SiSelenium,
+  SiHuggingface, SiOpenai, SiGooglegemini, SiPandas, SiStreamlit
+};
 
 export default function Portfolio() {
-const [lang, setLang] = useState<"es" | "en">("es");
+  const [lang, setLang] = useState<"es" | "en">("es");
   const data = portfolioData[lang];
   const [currentProject, setCurrentProject] = useState(0);
   const [aiQuery, setAiQuery] = useState("");
@@ -66,8 +86,7 @@ const [lang, setLang] = useState<"es" | "en">("es");
   return (
     <div className="relative min-h-screen bg-[#070708] text-slate-200 font-sans selection:bg-violet-500/30 overflow-x-hidden">
       
-      {/* FONDO ANIMADO SUTIL */}
-      <div className="fixed inset-0 z-[0] pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <motion.div
           animate={{
             x: [0, 50, 0],
@@ -95,9 +114,8 @@ const [lang, setLang] = useState<"es" | "en">("es");
             <motion.span whileHover={{ scale: 1.1 }} className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent cursor-pointer">
               MA.
             </motion.span>
-            
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-              {['about', 'experience', 'projects', 'education', 'ai', 'contact'].map((section) => (
+              {['about', 'experience', 'skills', 'projects', 'education', 'ai', 'contact'].map((section) => (
                 <a 
                   key={section}
                   href={`#${section}`} 
@@ -216,7 +234,7 @@ const [lang, setLang] = useState<"es" | "en">("es");
           </section>
 
           {/* EXPERIENCIA */}
-          <section id="experience" className="py-24">
+          <section id="experience" className="py-24 border-t border-white/5">
             <h3 className="text-4xl font-bold mb-16 text-white">{data.experience.title}</h3>
             <div className="space-y-12">
               {data.experience.items.map((exp, i) => (
@@ -250,8 +268,92 @@ const [lang, setLang] = useState<"es" | "en">("es");
             </div>
           </section>
 
-          {/* PROYECTOS CON CAPTURAS DE PANTALLA */}
-          <section id="projects" className="py-24">
+          {/* SECCIÓN SKILLS */}
+          <section id="skills" className="py-24 border-t border-white/5">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-4">
+                {data.skills.headerTitle} 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400">
+                  {data.skills.headerHighlight}
+                </span>
+              </h3>
+              <p className="text-slate-400 max-w-2xl mx-auto">
+                {data.skills.headerSubtitle}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+              
+              {data.skills.categories.map((category: any, i: number) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className={`
+                    relative group p-8 rounded-[2rem] border border-white/5 bg-[#121214] overflow-hidden
+                    ${i === 0 ? "md:col-span-7" : i === 1 ? "md:col-span-5" : i === 2 ? "md:col-span-5" : "md:col-span-7"}
+                    hover:border-violet-500/50 transition-all duration-500
+                  `}
+                >
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-violet-600/10 blur-[80px] group-hover:bg-violet-600/20 transition-all duration-500" />
+
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-2 h-8 bg-violet-500 rounded-full" />
+                      <h4 className="text-2xl font-bold text-white tracking-tight">{category.title}</h4>
+                    </div>
+
+                    <motion.div 
+                      variants={{
+                        show: { transition: { staggerChildren: 0.05 } }
+                      }}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+                    >
+                      {category.items.map((item: any, j: number) => {
+                        const IconComponent = iconMap[item.icon];
+                        return (
+                          <motion.div 
+                            key={j}
+                            variants={{
+                              hidden: { opacity: 0, y: 10 },
+                              show: { opacity: 1, y: 0 }
+                            }}
+                            whileHover={{ y: -5, scale: 1.05 }}
+                            className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300 group/item"
+                          >
+                            <div className="mb-3">
+                              {IconComponent && (
+                                <IconComponent 
+                                  size={32} 
+                                  className={`${item.color} filter drop-shadow-sm group-hover/item:drop-shadow-[0_0_12px_currentColor] transition-all duration-300`} 
+                                />
+                              )}
+                            </div>
+                            <span className="text-xs font-bold text-slate-500 group-hover/item:text-white uppercase tracking-tighter text-center">
+                              {item.name}
+                            </span>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* PROYECTOS */}
+          <section id="projects" className="py-24 border-t border-white/5">
             <div className="flex justify-between items-end mb-12">
               <h3 className="text-4xl font-bold text-white">{data.projects.title}</h3>
               <div className="flex gap-4">
@@ -304,7 +406,7 @@ const [lang, setLang] = useState<"es" | "en">("es");
           </section>
 
           {/* EDUCACIÓN & CERTIFICACIONES */}
-          <section id="education" className="py-24 grid lg:grid-cols-2 gap-16">
+          <section id="education" className="py-24 grid lg:grid-cols-2 gap-16 border-t border-white/5">
             <div>
               <h3 className="text-3xl font-bold mb-12 text-white">{data.education.title}</h3>
               <div className="space-y-10">
@@ -353,7 +455,7 @@ const [lang, setLang] = useState<"es" | "en">("es");
           </section>
 
           {/* SECCIÓN AI CONSULTANT */}
-          <section id="ai" className="py-24">
+          <section id="ai" className="py-24 border-t border-white/5">
             <div className="bg-[#121214] border border-white/5 rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-10">
                 <Sparkles size={120} className="text-violet-500" />
@@ -414,7 +516,7 @@ const [lang, setLang] = useState<"es" | "en">("es");
           </section>
 
           {/* CONTACTO */}
-          <section id="contact" className="py-24">
+          <section id="contact" className="py-24 border-t border-white/5">
             <div className="max-w-4xl mx-auto relative rounded-[2.5rem] bg-[#111113] border border-white/5 p-12 md:p-20 text-center overflow-hidden shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500" />
               
