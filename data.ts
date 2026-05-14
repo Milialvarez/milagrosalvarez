@@ -205,7 +205,7 @@ export const portfolioData = {
     },
     contact: {
       title: "Construyamos algo escalable",
-      subtitle: "Tenés un proyecto en mente o solo querés saludar? ¡Hablemos!",
+      subtitle: "¿Tenés un proyecto en mente o solo querés saludar? ¡Hablemos!",
       button: "Enviar Mail",
       email: "milagrosalvarez2604@gmail.com"
     }

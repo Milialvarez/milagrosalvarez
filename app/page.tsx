@@ -525,11 +525,19 @@ export default function Portfolio() {
               </h3>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 {data.contact.subtitle}
-              </p>
+              </p>   
               <motion.a 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href={`mailto:${data.contact.email}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${data.contact.email}&su=${encodeURIComponent(
+                  lang === "es" ? "Contacto desde tu Portfolio ✨" : "Contact from your Portfolio ✨"
+                )}&body=${encodeURIComponent(
+                  lang === "es"
+                    ? "Hola Milagros,\n\nVi tu portfolio y me pareció increíble tu perfil. Me gustaría contactarte para conversar sobre...\n\n¡Saludos!"
+                    : "Hi Milagros,\n\nI saw your portfolio and loved your profile. I would like to reach out to discuss...\n\nBest regards!"
+                )}`}
                 className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors"
               >
                 <Mail size={20} /> {data.contact.button}
